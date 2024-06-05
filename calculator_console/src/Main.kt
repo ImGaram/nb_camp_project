@@ -29,16 +29,17 @@ fun main() = with(Scanner(System.`in`)){
                         isCalculatorFinish = true
                         break
                     } else {
-                        calculation(formula = formula)
                         // 정규 표현식을 이용한 수식 분할(여러 개의 문자를 기준으로 분할 가능함).
                         val splitFormula = formula.split("+", "-", "*", "/")
-                        val splitFormulaSymbol = formula.map { it == '+' || it == '-' || it == '*' || it == '/' }
+                        val splitFormulaSymbol = formula.filter { it in setOf('+', '-', '*', '/') }.map { it.toString() }
                         // splitFormula에서 숫자와 괄호"()"만 포함되도록 하기(정규 표현식 사용).
-                        if (!splitFormula.all { it.matches(Regex("[\\d()]*")) })
+                        if (!splitFormula.all { it.matches(Regex("\\d*")) })
                             println("연산식이 문자를 포함하고 있습니다. 다시 시도해 주세요.")
                         else {
-//                            calculation()
-                            continue
+                            calculation(
+                                splitFormula = splitFormula,
+                                splitFormulaSymbol = splitFormulaSymbol
+                            )
                         }
                     }
                 }
@@ -53,13 +54,36 @@ fun main() = with(Scanner(System.`in`)){
                 continue
             }
         } catch (e: Exception) {
+            println(e.printStackTrace())
             println("문자 입력은 안되.")
             println("계산을 시작하려면 0을 입력하고, 종료하려면 -1을 입력하세요.")
         }
     }
 }
 
-private fun calculation(formula: String) {
+private fun calculation(splitFormula: List<String>, splitFormulaSymbol: List<String>) {
     // 수식을 입력받아 계산하기.
     val calculator = Calculator()
+    val mutableSplitFormula = splitFormula.map { it.toInt() }.toMutableList()
+    val mutableSplitFormulaSymbol = splitFormulaSymbol.toMutableList()
+
+    println(mutableSplitFormula)
+    println(mutableSplitFormulaSymbol)
+
+    var calculateResult = mutableSplitFormula[0]
+    mutableSplitFormula.removeAt(0)
+
+    // todo :: 계산 우선순위 부여해서 계산하도록 구현(*, /)
+    while (mutableSplitFormula.size > 0) {
+        when (mutableSplitFormulaSymbol[0]) {
+            "+" -> calculateResult = calculator.add(calculateResult, mutableSplitFormula[0])
+            "-" -> calculateResult = calculator.minus(calculateResult, mutableSplitFormula[0])
+            "*" -> calculateResult = calculator.multiply(calculateResult, mutableSplitFormula[0])
+            "/" -> calculateResult = calculator.divide(calculateResult, mutableSplitFormula[0])
+        }
+        mutableSplitFormula.removeAt(0)
+        mutableSplitFormulaSymbol.removeAt(0)
+    }
+
+    println("계산 결과: $calculateResult")
 }
