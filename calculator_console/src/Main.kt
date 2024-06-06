@@ -63,22 +63,50 @@ private fun calculation(splitFormula: List<String>, splitFormulaSymbol: List<Cha
     val mutableSplitFormula = splitFormula.map { it.toInt() }.toMutableList()
     val mutableSplitFormulaSymbol = splitFormulaSymbol.map { it.toString() }.toMutableList()
 
-    println(mutableSplitFormula)
-    println(mutableSplitFormulaSymbol)
+    // 곱하기, 나누기를 우선으로 계산하기
+    // 먼저 곱하기, 나누기가 존재하는지 indexOf로 확인해야 함(초기값 -2).
+    var multiplyIndex = -2
+    var divideIndex = -2
+    // 곱하기, 나누기 기호가 없어질 때까지 반복.
+    while (multiplyIndex != -1 || divideIndex != -1) {
+        // 반복마다 곱하기, 나누기의 위치를 구함.
+        multiplyIndex = mutableSplitFormulaSymbol.indexOf("*")
+        divideIndex = mutableSplitFormulaSymbol.indexOf("/")
+
+        if (multiplyIndex < divideIndex) {
+            // 나누기가 더 먼저 있음
+            val divideResult = calculator.divide(mutableSplitFormula[divideIndex], mutableSplitFormula[divideIndex+1])
+
+            // 계산에 사용한 숫자 2개를 지운다.
+            mutableSplitFormula.removeAt(divideIndex)
+            mutableSplitFormula.removeAt(divideIndex)
+            // 계산에 사용한 나누기 기호를 지운다.
+            mutableSplitFormulaSymbol.removeAt(divideIndex)
+            // 나누기 계산 결과를 추가한다.
+            mutableSplitFormula.add(divideIndex, divideResult)
+        } else if (multiplyIndex > divideIndex) {
+            // 곱하기가 더 먼저 있음
+            val multiplyResult = calculator.multiply(mutableSplitFormula[multiplyIndex], mutableSplitFormula[multiplyIndex+1])
+
+            mutableSplitFormula.removeAt(multiplyIndex)
+            mutableSplitFormula.removeAt(multiplyIndex)
+            mutableSplitFormulaSymbol.removeAt(multiplyIndex)
+            mutableSplitFormula.add(multiplyIndex, multiplyResult)
+        }
+    }
 
     var calculateResult = mutableSplitFormula[0]
     mutableSplitFormula.removeAt(0)
 
-    // todo :: 계산 우선순위 부여해서 계산하도록 구현(*, /)
     while (mutableSplitFormula.size > 0) {
         when (mutableSplitFormulaSymbol[0]) {
             "+" -> calculateResult = calculator.add(calculateResult, mutableSplitFormula[0])
             "-" -> calculateResult = calculator.minus(calculateResult, mutableSplitFormula[0])
-            "*" -> calculateResult = calculator.multiply(calculateResult, mutableSplitFormula[0])
-            "/" -> calculateResult = calculator.divide(calculateResult, mutableSplitFormula[0])
         }
+
         mutableSplitFormula.removeAt(0)
         mutableSplitFormulaSymbol.removeAt(0)
+
     }
 
     println("계산 결과: $calculateResult")
