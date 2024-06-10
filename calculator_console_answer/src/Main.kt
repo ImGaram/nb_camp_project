@@ -3,15 +3,15 @@ package src
 import src.calculate.*
 
 fun main() {
-    val calculator1 = AddOperation()
-    calculator1.operate(10, 20)
+    val addCalc = Calculator(AddOperation())
+    println("10 + 20 = ${addCalc.operate(10, 20)} 입니다.")
 
-    val calculator2 = SubstractOperation()
-    calculator2.operate(20, 10)
+    val minusCalc = Calculator(SubstractOperation())
+    println("20 - 10 = ${minusCalc.operate(20, 10)} 입니다.")
 
-    val calculator3 = MultiplyOperation()
-    calculator3.operate(10, 20)
+    val multiplyCalc = Calculator(MultiplyOperation())
+    println("10 * 20 = ${multiplyCalc.operate(10, 20)} 입니다.")
 
-    val calculator4 = DivideOperation()
-    calculator4.operate(20, 10)
+    val divCalc = Calculator(DivideOperation())
+    println("20 / 10 = ${divCalc.operate(0, 10)} 입니다.")
 }
