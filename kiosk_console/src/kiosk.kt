@@ -1,5 +1,6 @@
 package src
 
+import src.menu.*
 import java.util.Scanner
 
 fun main() = with(Scanner(System.`in`)) {
@@ -52,22 +53,34 @@ private fun Scanner.menuInfo(category: String) {
     while (true) {
         when (category) {
             "햄버거" -> {
+                val burger1 = Burger1()
+                val burger2 = Burger2()
+                val burger3 = Burger3()
+
                 println("[ 햄버거 ]")
-                println("1. 햄버거 1                  | W3,500 | 그냥 햄버거 1")
-                println("2. 햄버거 2                  | W5,500 | 그냥 햄버거 2")
-                println("3. 햄버거 3                  | W7,000 | 그냥 햄버거 3")
+                burger1.displayInfo()
+                burger2.displayInfo()
+                burger3.displayInfo()
             }
             "서브 메뉴" -> {
+                val frenchFries = FrenchFries()
+                val cheeseStick = CheeseStick()
+                val redBeanShavedIce = RedBeanShavedIce()
+
                 println("[ 서브 메뉴 ]")
-                println("1. 감자튀김                  | W1,500 | 그냥 감자튀김")
-                println("2. 치즈스틱                  | W2,000 | 그냥 치즈스틱")
-                println("3. 팥빙수                    | W4,500 | 그냥 팥빙수")
+                frenchFries.displayInfo()
+                cheeseStick.displayInfo()
+                redBeanShavedIce.displayInfo()
             }
             "음료" -> {
+                val cola = Cola()
+                val coffee = Coffee()
+                val water = Water()
+
                 println("[ 음료수 ]")
-                println("1. 콜라                     | W1,500 | 그냥 콜라")
-                println("2. 아이스 아메리카노          | W2,500 | 그냥 커피 안 뜨거움")
-                println("3. 물                       | W1,000 | 그냥 물")
+                cola.displayInfo()
+                coffee.displayInfo()
+                water.displayInfo()
             }
         }
         println("0. 뒤로가기")
