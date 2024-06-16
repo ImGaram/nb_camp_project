@@ -12,4 +12,8 @@ open class Food(
     fun displayInfo() {
         println("$foodNum. $name                  | W$price | $description")
     }
+
+    fun displayShoppingBasket() {
+        println("$name                  | W$price | $description")
+    }
 }
