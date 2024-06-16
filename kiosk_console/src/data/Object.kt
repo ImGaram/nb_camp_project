@@ -25,3 +25,9 @@ class OwnMoney {
         }
     }
 }
+
+class ShoppingBasket {
+    companion object {
+        val shoppingBasket = mutableListOf<Food>()
+    }
+}
