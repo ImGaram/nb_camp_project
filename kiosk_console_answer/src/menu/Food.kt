@@ -1,19 +1,15 @@
 package src.menu
 
-class Food(name: String, price: Double, category: String, description: String) {
-    var name: String
+class Food(name: String, price: Double, category: String, description: String): Menu(name, description) {
     var price: Double
     var category: String
-    var description: String
 
     init {
-        this.name = name
         this.price = price
         this.category = category
-        this.description = description
     }
 
-    fun displayInfo() {
+    override fun displayInfo() {
         println("카테고리: $category, 가격: $price, 이름: $name, [ $description ]")
     }
 }
