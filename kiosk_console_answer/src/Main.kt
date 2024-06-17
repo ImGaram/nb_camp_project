@@ -1,14 +1,22 @@
 package src
 
+import kotlinx.coroutines.delay
 import src.menu.Food
 import src.menu.Menu
+import java.sql.Time
+import java.time.LocalDateTime
+import java.util.Timer
+import java.util.TimerTask
 
 val menus: MutableList<Menu> = ArrayList()
 val foods: MutableList<Food> = ArrayList()
 val orders: MutableList<Order> = ArrayList()
 var money: Double = 0.0
+var now = LocalDateTime.now()
+var start = LocalDateTime.of(now.year, now.month, now.dayOfMonth, 20, 25, 0)
+var end = LocalDateTime.of(now.year, now.month, now.dayOfMonth, 20, 26, 0)
 
-fun main() {
+suspend fun main() {
     init()
 
     while(true) {
@@ -16,12 +24,14 @@ fun main() {
 
         var categorySelect = getPureNumber()
         if (categorySelect == 0) {
-            println("프로그램을 종료합니다")
+            println("프로그램을 3초뒤에 종료합니다")
+            globalDelay(3000)
             return
         }
 
 
         var selectedObject = selectMenu(categorySelect)
+        globalDelay(3000)
         selectedObject?.let { obj ->
             // 주문하기.
             addOrder(obj)
@@ -65,6 +75,7 @@ fun init() {
     foods.add(Food("Gin", 25.2, "Beer", "진"))
     foods.add(Food("Armand de Brignac", 999.99, "Beer", "아르망디 샴페인"))
 
+    checkOrder()
 }
 
 fun displayMenu() {
@@ -129,10 +140,14 @@ fun selectMenu(cateNumber: Int): Food? {
                     var selectOrderNumber = getPureNumber()
                     when (selectOrderNumber) {
                         1 -> {
-                            if (money >= totalOrderPrice) {
+                            var isMaintainance = isMaintainance()
+                            if (isMaintainance.first) {
+                                println("현재 시각은 ${isMaintainance.second.hour}시 ${isMaintainance.second.minute}분입니다.")
+                                println("은행 점검 시간은: ${start.hour}시 ${start.minute}분 ~ ${end.hour}시 ${end.minute}분이므로 결제할 수 없습니다.")
+                            } else if (money >= totalOrderPrice) {
                                 orders.clear()
                                 money -= totalOrderPrice
-                                println("결제를 완료했습니다.")
+                                println("결제를 완료했습니다. ${isMaintainance.second}")
                             }
 
                             return null
@@ -222,4 +237,22 @@ fun displayOrderDetail(): Double {
 
         return totalOrderPrice
     } else return -1.0
+}
+
+suspend fun globalDelay(time: Long) {
+    delay(time)
+}
+
+fun isMaintainance(): Pair<Boolean, LocalDateTime> {
+    var now = LocalDateTime.now()
+    return Pair(now.toLocalTime() >= start.toLocalTime() && now.toLocalTime() <= end.toLocalTime(), now)
+}
+
+fun checkOrder() {
+    var timer = Timer()
+    timer.schedule(object : TimerTask() {
+        override fun run() {
+            println("\b 현재 주문 대기수: ${orders.size}")
+        }
+    }, 0, 5000)
 }
