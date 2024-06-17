@@ -1,6 +1,10 @@
 package src
 
+import src.menu.Food
+
 fun main() {
+    var shackBurger = Food("ShackBurger", 6.9, "burger", "토마토,양상추,쉑소스가 토핑된 치즈버거")
+    var smokeBurger = Food("SmokeBurger", 8.9, "burger", "체리 페퍼에 쉑소스가 토핑된 치즈버거")
 
     while(true) {
         println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요")
@@ -27,7 +31,7 @@ fun main() {
 
                     }
                     1 -> {
-                        println("ShackBurger 입니다~")
+                        shackBurger.displayInfo()
                     }
                 }
             }
