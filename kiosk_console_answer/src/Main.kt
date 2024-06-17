@@ -5,80 +5,28 @@ import src.menu.Menu
 
 val menus: MutableList<Menu> = ArrayList()
 val foods: MutableList<Food> = ArrayList()
+val orders: MutableList<Order> = ArrayList()
 var money: Double = 0.0
 
 fun main() {
     init()
 
     while(true) {
-        println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요")
-        println("[MYSHOP MENU]")
-        println("1. Burgers        | 앵거스 비프 통살을 다져만든 버거")
-        println("2. Forzen Custard | 매장에서 신선하게 만드는 아이스크림")
-        println("3. Drinks         | 매장에서 직접 만드는 음료")
-        println("4. Beer           | 뉴욕 브루클린 브루어리에서 양조한 맥주")
-        println("0. 종료            | 프로그램 종료")
+        displayMenu()
 
-        var categorySelect = readLine()!!.toInt()
+        var categorySelect = getPureNumber()
+        if (categorySelect == 0) {
+            println("프로그램을 종료합니다")
+            return
+        }
 
-        when(categorySelect) {
-            1 -> {
-                println("1. ShackBurger    | W 6.9 | 토마토,양상추,쉑소스가 토핑된 치즈버거")
-                println("2. SmokeBurger    | W 8.9 | 체리 페퍼에 쉑소스가 토핑된 치즈버거")
-                println("3. Shroom Burger  | W 9.4 | 몬스터 치즈와 체다 치즈로 속을 채운 베지테리안 버거")
-                println("4. Cheese Burger  | W 6.9 | 포테이토 번과 비프패티, 치즈가 토핑된 치즈버거")
-                println("5. Hamburger      | W 5.4 | 비프패티를 기반으로 야채가 들어간 기본버거")
-                println("0. 종료            | 뒤로가기")
-                var menuSelect = readLine()!!.toInt()
-                when(menuSelect) {
-                    0 -> {
 
-                    }
-                    1 -> {
-
-                    }
-                }
-            }
-            2 -> {
-                println("1. Plain Ice Cream     | W 12.1 | 바닐라 아이스크림")
-                println("2. Chocolate Ice Cream | W 10.2 | 초콜릿 아이스크림")
-                println("3. Fruits Ice Cream    | W 15.14 | 과일 아이스크림")
-                println("4. Nuts Ice Cream      | W 15.14 | 아몬드 아이스크림")
-                println("5. Ice Milk            | W 9.9 | 저지방 아이스크림")
-                println("0. 종료                 | 뒤로가기")
-                var menuSelect = readLine()!!.toInt()
-                when(menuSelect) {
-
-                }
-            }
-            3 -> {
-                println("1. Ade        | W 7.5 | 에이드")
-                println("2. Americano  | W 6.4 | 아메리카노")
-                println("3. Beverage   | W 6.8 | 음료수")
-                println("4. Black Tea  | W 7.7 | 홍차")
-                println("5. Barley Tea | W 8.9 | 보리차")
-                println("0. 종료        | 뒤로가기")
-                var menuSelect = readLine()!!.toInt()
-                when(menuSelect) {
-
-                }
-            }
-            4 -> {
-                println("1. Bokbunja           | W 16.2   | 복분자")
-                println("2. Bourbon            | W 19.2   | 버번위스키")
-                println("3. Cocktail           | W 15.4   | 칵테일")
-                println("4. Gin                | W 25.2   | 진")
-                println("5. Armand de Brignac  | W 999.99 | 아르망디 샴페인")
-                println("0. 종료        | 뒤로가기")
-                var menuSelect = readLine()!!.toInt()
-                when(menuSelect) {
-
-                }
-            }
-            0 -> {
-                println("프로그램을 종료합니다.")
-                break
-            }
+        var selectedObject = selectMenu(categorySelect)
+        selectedObject?.let { obj ->
+            // 주문하기.
+            addOrder(obj)
+        } ?: run {
+            println("\n현재 잔액: $money\n")
         }
     }
 }
@@ -90,6 +38,8 @@ fun init() {
     menus.add(Menu("Forzen Custard", "매장에서 신선하게 만드는 아이스크림"))
     menus.add(Menu("Drinks", "매장에서 직접 만드는 음료"))
     menus.add(Menu("Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"))
+    menus.add(Menu("Order", "주문"))
+    menus.add(Menu("Cancel", "주문취소"))
 
     foods.add(Food("ShackBurger", 6.9, "Burgers", "토마토,양상추,쉑소스가 토핑된 치즈버거"))
     foods.add(Food("SmokeBurger", 8.9, "Burgers", "체리 페퍼에 쉑소스가 토핑된 치즈버거"))
@@ -115,4 +65,161 @@ fun init() {
     foods.add(Food("Gin", 25.2, "Beer", "진"))
     foods.add(Food("Armand de Brignac", 999.99, "Beer", "아르망디 샴페인"))
 
+}
+
+fun displayMenu() {
+    println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요")
+    println("[MYSHOP MENU]")
+
+    // 메뉴 이름의 여백을 맞추기 위한 작업
+    // 가장 긴 이름의 길이 얻음
+    val maxNameLength = menus.maxOfOrNull { it.name.length } ?: 0
+    var menuSize = menus.size
+    var count = 1
+    for (idx in 1..menuSize) {
+        val menu = menus[idx-1]
+        val name = menu.name
+        if (name == "Order") println("[ ORDER MENU ]")
+
+        val desc = menu.description
+        val padding = " ".repeat(maxNameLength - name.length)
+        println("$idx. $name$padding | $desc")
+    }
+    println("0. 종료 | 프로그램 종료")
+}
+
+fun getPureNumber(): Int {
+    var userInput: String?
+    var number: Int?
+
+    while (true) {
+        println("번호를 입력해주세요.")
+        userInput = readln()
+        number = userInput.toIntOrNull()
+
+        if (number != null) return number
+        else println("올바른 숫자를 입력하세요")
+    }
+}
+
+fun selectMenu(cateNumber: Int): Food? {
+    var menu = menus[cateNumber-1]
+    var categoryName = menu.name
+
+    if (categoryName != "Order" && categoryName != "Cancel") {
+        var filteredFoods = foods.filter { it.category == categoryName }
+        displayMenuDetail(categoryName)
+
+        while (true) {
+            val selectFoodNumber = getPureNumber()
+            if (selectFoodNumber > filteredFoods.size || selectFoodNumber < 0) println("올바른 숫자를 입력하세요")
+            else if (selectFoodNumber == 0) return null
+            else return filteredFoods[selectFoodNumber-1]
+        }
+    } else {
+        when(categoryName) {
+            "Order" -> {
+                var totalOrderPrice = displayOrderDetail()
+                if (totalOrderPrice < 0.0) {
+                    println("주문 내역이 존재하지 않습니다.")
+                    return null
+                }
+                println("1. 주문\t\t 2. 메뉴판")
+                while (true) {
+                    var selectOrderNumber = getPureNumber()
+                    when (selectOrderNumber) {
+                        1 -> {
+                            if (money >= totalOrderPrice) {
+                                orders.clear()
+                                money -= totalOrderPrice
+                                println("결제를 완료했습니다.")
+                            }
+
+                            return null
+                        }
+                        2 -> {
+                            println("메뉴판으로 이동합니다.")
+                            return null
+                        }
+                        else -> {
+                            println("올바른 숫자를 입력 해주세요.")
+                        }
+                    }
+                }
+            }
+            "Cancel" -> {
+                orders.clear()
+                println("메뉴판으로 이동합니다.")
+                return null
+            }
+            else -> return null
+        }
+    }
+}
+
+fun displayMenuDetail(categoryName: String) {
+    println("\n[ $categoryName MENU ]")
+
+    var filteredFoods = foods.filter { it.category == categoryName }
+
+    val maxNameLength = filteredFoods.maxOfOrNull { it.name.length } ?: 0
+    val maxPriceLength = filteredFoods.maxOfOrNull { it.price.toString().length } ?: 0
+    var foodSize = filteredFoods.size
+
+    for (i in 1..foodSize) {
+        val food = filteredFoods[i-1]
+        val name = food.name
+        val price = food.price
+        val desc = food.description
+
+
+        val namePadding = " ".repeat(maxNameLength - name.length)
+        val pricePadding = " ".repeat(maxPriceLength - price.toString().length)
+        println("$i. $name$namePadding | W$price$pricePadding | $desc")
+    }
+    val backPadding = " ".repeat(maxNameLength - "0. back".length)
+    println("0. back$backPadding | 뒤로가기")
+}
+
+fun addOrder(food: Food) {
+    food.displayInfo()
+    println("위 메뉴를 장바구니에 추가하시겠습니까?")
+    println("1. 확인\t\t 2. 취소")
+
+    while (true) {
+        var selectOrderNumber = getPureNumber()
+        when (selectOrderNumber) {
+            1 -> {
+                orders.add(Order(food))
+                println("${food.name}을 장바구니에 추가했습니다.")
+                return
+            }
+            2 -> {
+                println("구매를 취소했습니다.")
+                return
+            }
+            else -> {
+                println("올바른 숫자를 입력해주세요.")
+            }
+
+        }
+    }
+}
+
+fun displayOrderDetail(): Double {
+    var orderSize = orders.size
+    if (orderSize > 0) {
+        println("아래와 같이 주문 하시겠습니까?\n")
+
+        println("[ Orders ]")
+        for (i in 0 until orderSize) {
+            orders[i].food.displayInfo()
+        }
+
+        println("[ Total ]")
+        val totalOrderPrice = orders.fold(0.0) { acc, order -> acc + order.food.price }
+        println("W $totalOrderPrice")
+
+        return totalOrderPrice
+    } else return -1.0
 }
