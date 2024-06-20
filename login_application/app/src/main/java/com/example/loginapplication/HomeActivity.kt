@@ -2,11 +2,13 @@ package com.example.loginapplication
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.Random
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,5 +27,15 @@ class HomeActivity : AppCompatActivity() {
 
         val finishButton = findViewById<Button>(R.id.button_home_finish)
         finishButton.setOnClickListener { finish() }
+
+        val homeTitleImage = findViewById<ImageView>(R.id.image_home_title)
+        val random = Random().nextInt(5)
+        when (random) {
+            0 -> homeTitleImage.setImageResource(R.drawable.image_title_home1)
+            1 -> homeTitleImage.setImageResource(R.drawable.image_title_home2)
+            2 -> homeTitleImage.setImageResource(R.drawable.image_title_home3)
+            3 -> homeTitleImage.setImageResource(R.drawable.image_title_home4)
+            4 -> homeTitleImage.setImageResource(R.drawable.image_title_home5)
+        }
     }
 }

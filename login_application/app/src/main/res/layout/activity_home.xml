@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/image_home_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="197dp"
         android:layout_margin="40dp"
         android:contentDescription="home title image"
         android:src="@drawable/title_sign_in_img"
