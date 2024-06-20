@@ -1,6 +1,9 @@
 package com.example.loginapplication
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +18,19 @@ class SignUpActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val signUpNameEditText = findViewById<EditText>(R.id.edit_text_sign_up_name)
+        val signUpIdEditText = findViewById<EditText>(R.id.edit_text_sign_up_id)
+        val signUpPwEditText = findViewById<EditText>(R.id.edit_text_sign_up_pw)
+        val signUpCompleteButton = findViewById<Button>(R.id.button_sign_up_completed)
+
+        signUpCompleteButton.setOnClickListener {
+            if (signUpNameEditText.text.isNotEmpty() && signUpIdEditText.text.isNotEmpty() && signUpPwEditText.text.isNotEmpty()) {
+                finish()
+            } else {
+                Toast.makeText(this, "입력되지 않은 정보가 있습니다", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
