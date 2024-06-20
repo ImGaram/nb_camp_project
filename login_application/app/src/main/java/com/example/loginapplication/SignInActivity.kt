@@ -30,7 +30,7 @@ class SignInActivity : AppCompatActivity() {
             // id, pw 중 하나라도 비어 있으면 작동.
             if (idEditText.text.isNotBlank() && pwEditText.text.isNotBlank()) {
                 val intent = Intent(this, HomeActivity::class.java)
-                intent.putExtra("id", idEditText.text ?: "null")
+                intent.putExtra("id", idEditText.text.toString())
                 startActivity(intent)
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             } else {
