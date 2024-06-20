@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -25,6 +26,17 @@ class SignInActivity : AppCompatActivity() {
         val pwEditText = findViewById<EditText>(R.id.edit_text_pw)
         val loginButton = findViewById<Button>(R.id.button_login)
         val signUpButton = findViewById<Button>(R.id.button_sign_up)
+        val startForResult = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val idData = result.data?.getStringExtra("id") ?: "null"
+                val pwData = result.data?.getStringExtra("pw") ?: "null"
+
+                idEditText.setText(idData)
+                pwEditText.setText(pwData)
+            }
+        }
 
         loginButton.setOnClickListener {
             // id, pw 중 하나라도 비어 있으면 작동.
@@ -39,7 +51,8 @@ class SignInActivity : AppCompatActivity() {
         }
 
         signUpButton.setOnClickListener {
-            startActivity(Intent(this, SignUpActivity::class.java))
+            val intentFromSignUp = Intent(this, SignUpActivity::class.java)
+            startForResult.launch(intentFromSignUp)
         }
     }
 }

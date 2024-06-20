@@ -1,5 +1,6 @@
 package com.example.loginapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -27,6 +28,10 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpCompleteButton.setOnClickListener {
             if (signUpNameEditText.text.isNotEmpty() && signUpIdEditText.text.isNotEmpty() && signUpPwEditText.text.isNotEmpty()) {
+                val intent = Intent(this, SignInActivity::class.java)
+                intent.putExtra("id", signUpIdEditText.text.toString())
+                intent.putExtra("pw", signUpPwEditText.text.toString())
+                setResult(RESULT_OK, intent)
                 finish()
             } else {
                 Toast.makeText(this, "입력되지 않은 정보가 있습니다", Toast.LENGTH_SHORT).show()
