@@ -1,17 +1,23 @@
 package com.example.loginapplication
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.loginapplication.data.User
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 class SignInActivity : AppCompatActivity() {
+    private lateinit var userData: User
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,11 +36,10 @@ class SignInActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-                val idData = result.data?.getStringExtra("id") ?: "null"
-                val pwData = result.data?.getStringExtra("pw") ?: "null"
+                userData = result.data?.getParcelableExtra("user", User::class.java) ?: User("", "", "")
 
-                idEditText.setText(idData)
-                pwEditText.setText(pwData)
+                idEditText.setText(userData.id)
+                pwEditText.setText(userData.password)
             }
         }
 
@@ -42,7 +47,7 @@ class SignInActivity : AppCompatActivity() {
             // id, pw 중 하나라도 비어 있으면 작동.
             if (idEditText.text.isNotBlank() && pwEditText.text.isNotBlank()) {
                 val intent = Intent(this, HomeActivity::class.java)
-                intent.putExtra("id", idEditText.text.toString())
+                intent.putExtra("userData", userData)
                 startActivity(intent)
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             } else {

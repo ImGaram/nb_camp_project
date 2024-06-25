@@ -1,15 +1,19 @@
 package com.example.loginapplication
 
+import android.os.Build
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.loginapplication.data.User
 import java.util.Random
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +25,12 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
 
-        val extraId = intent.getStringExtra("id")
+        val extraUser = intent.getParcelableExtra("userData", User::class.java)
         val homeTextIdValue = findViewById<TextView>(R.id.text_home_id_value)
-        if (extraId != null) homeTextIdValue.text = extraId
+        val homeTextNameValue = findViewById<TextView>(R.id.text_home_name_value)
+
+        if (extraUser?.id != null) homeTextIdValue.text = extraUser.id
+        if (extraUser?.name != null) homeTextNameValue.text = extraUser.name
 
         val finishButton = findViewById<ConstraintLayout>(R.id.button_home_finish)
         finishButton.setOnClickListener { finish() }

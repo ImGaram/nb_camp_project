@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.loginapplication.data.User
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +30,8 @@ class SignUpActivity : AppCompatActivity() {
         signUpCompleteButton.setOnClickListener {
             if (signUpNameEditText.text.isNotEmpty() && signUpIdEditText.text.isNotEmpty() && signUpPwEditText.text.isNotEmpty()) {
                 val intent = Intent(this, SignInActivity::class.java)
-                intent.putExtra("id", signUpIdEditText.text.toString())
-                intent.putExtra("pw", signUpPwEditText.text.toString())
+                val user = User(signUpNameEditText.text.toString(), signUpIdEditText.text.toString(), signUpPwEditText.text.toString())
+                intent.putExtra("user", user)
                 setResult(RESULT_OK, intent)
                 finish()
             } else {
