@@ -1,11 +1,11 @@
 package com.example.loginapplication
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.Random
@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
         val homeTextIdValue = findViewById<TextView>(R.id.text_home_id_value)
         if (extraId != null) homeTextIdValue.text = extraId
 
-        val finishButton = findViewById<Button>(R.id.button_home_finish)
+        val finishButton = findViewById<ConstraintLayout>(R.id.button_home_finish)
         finishButton.setOnClickListener { finish() }
 
         val homeTitleImage = findViewById<ImageView>(R.id.image_home_title)

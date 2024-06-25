@@ -110,15 +110,40 @@
         app:layout_constraintStart_toEndOf="@+id/text_home_mbti_title"
         app:layout_constraintTop_toTopOf="@+id/text_home_mbti_title" />
 
-    <Button
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/button_home_finish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="종료"
         android:layout_marginBottom="40dp"
+        android:background="@drawable/bg_home_finish_button"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/image_home_title"
-        app:layout_constraintStart_toStartOf="@+id/image_home_title" />
+        app:layout_constraintStart_toStartOf="@+id/image_home_title">
 
+        <ImageView
+            android:id="@+id/button_icon_home_finish"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_home_finish_burtton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/button_text_home_finish"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/button_text_home_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="종료"
+            android:textColor="@drawable/text_color_home_finish_button"
+            android:textSize="23sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_icon_home_finish"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
