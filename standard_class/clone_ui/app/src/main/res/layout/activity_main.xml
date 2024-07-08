@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_layout_search_bar"
-            android:layout_width="320dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_main_top_bar"
             android:paddingHorizontal="20dp"
@@ -37,11 +37,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <TextView
                 android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:hint="앱 및 게임 검색"
+                android:layout_height="40dp"
+                android:text="앱 및 게임 검색"
+                android:textSize="15sp"
                 android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/image_top_bar_mic"
@@ -65,7 +65,6 @@
             android:src="@drawable/ic_notification"
             app:layout_constraintBottom_toBottomOf="@+id/main_layout_search_bar"
             app:layout_constraintEnd_toStartOf="@+id/image_home_user"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/main_layout_search_bar"
             app:layout_constraintTop_toTopOf="@+id/main_layout_search_bar" />
 
@@ -74,9 +73,9 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_account_circle"
+            android:layout_marginStart="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/main_layout_search_bar"
             app:layout_constraintEnd_toEndOf="@id/main_layout_top_bar"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/image_home_notification"
             app:layout_constraintTop_toTopOf="@+id/main_layout_search_bar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -85,7 +84,7 @@
         android:id="@+id/main_layout_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
+        android:paddingVertical="5dp"
         android:background="#F1F1F1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +110,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
                 android:text="게임" />
         </LinearLayout>
 
@@ -134,7 +132,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
                 android:text="앱" />
         </LinearLayout>
 
@@ -157,7 +154,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
                 android:text="도서" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -246,6 +242,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -259,10 +256,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_1st"/>
 
                 <LinearLayout
@@ -290,6 +289,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -303,10 +303,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_2nd" />
 
                 <LinearLayout
@@ -334,6 +336,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -347,10 +350,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_3rd"/>
 
                 <LinearLayout
@@ -378,6 +383,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -391,10 +397,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_4th"/>
 
                 <LinearLayout
@@ -422,6 +430,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -435,10 +444,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_5th"/>
 
                 <LinearLayout
@@ -466,6 +477,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -479,10 +491,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_6th"/>
 
                 <LinearLayout
@@ -510,6 +524,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -523,10 +538,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_7th"/>
 
                 <LinearLayout
@@ -554,6 +571,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -567,10 +585,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_8th" />
 
                 <LinearLayout
@@ -598,6 +618,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -611,10 +632,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_9th"/>
 
                 <LinearLayout
@@ -642,6 +665,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_popular_rank_10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="25dp"
@@ -655,10 +679,12 @@
                     android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_marginEnd="15dp"
                     android:clipToOutline="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_image_radius"
                     android:src="@drawable/ic_game_10th"/>
 
                 <LinearLayout
