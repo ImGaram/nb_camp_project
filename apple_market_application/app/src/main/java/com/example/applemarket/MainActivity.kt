@@ -12,6 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         val goodsRecyclerView = binding.mainRecyclerViewGoods
         goodsRecyclerView.layoutManager = LinearLayoutManager(this)
-        goodsRecyclerView.adapter = GoodsAdapter()
+        goodsRecyclerView.adapter = GoodsAdapter(this)
 
         binding.mainImageNotification.setOnClickListener {
             showNotification()
@@ -84,10 +85,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNotificationPermission() {
         if (VERSION.SDK_INT >= VERSION_CODES.TIRAMISU) {
-            val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
-                putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+            if (!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
+                val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                    putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+                }
+                startActivity(intent)
             }
-            startActivity(intent)
         }
     }
 }
