@@ -1,5 +1,9 @@
 package com.example.applemarket.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class GoodsData(
     val title: String,
     val address: String,
@@ -10,4 +14,4 @@ data class GoodsData(
     var chatCnt: Int,
     var likeCnt: Int,
     var isLike: Boolean = false
-)
+): Parcelable
