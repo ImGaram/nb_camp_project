@@ -1,15 +1,18 @@
 package com.example.applemarket.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.icu.text.DecimalFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applemarket.GoodsInfoActivity
 import com.example.applemarket.R
 import com.example.applemarket.data.GoodsData
 import com.example.applemarket.data.GoodsObject
 import com.example.applemarket.databinding.ItemRecyclerViewGoodsBinding
 
-class GoodsAdapter: RecyclerView.Adapter<GoodsAdapter.ViewHolder>() {
+class GoodsAdapter(private val context: Context): RecyclerView.Adapter<GoodsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_view_goods, parent, false)
         return ViewHolder(ItemRecyclerViewGoodsBinding.bind(binding))
@@ -39,7 +42,9 @@ class GoodsAdapter: RecyclerView.Adapter<GoodsAdapter.ViewHolder>() {
                 }
 
                 binding.root.setOnClickListener {
-                    // todo :: 데이터 클릭 이벤트(intent).
+                    val intent = Intent(context, GoodsInfoActivity::class.java)
+                    intent.putExtra("goods", goods)
+                    context.startActivity(intent)
                 }
             }
         }
