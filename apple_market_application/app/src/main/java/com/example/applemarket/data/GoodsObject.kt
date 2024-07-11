@@ -1,7 +1,6 @@
-package com.example.applemarket.adapter
+package com.example.applemarket.data
 
 import com.example.applemarket.R
-import com.example.applemarket.data.GoodsData
 
 object GoodsObject {
     val goodsList = listOf(

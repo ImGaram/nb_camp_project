@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applemarket.R
 import com.example.applemarket.data.GoodsData
+import com.example.applemarket.data.GoodsObject
 import com.example.applemarket.databinding.ItemRecyclerViewGoodsBinding
 
 class GoodsAdapter: RecyclerView.Adapter<GoodsAdapter.ViewHolder>() {
