@@ -50,11 +50,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_layout_toolbar" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/main_floating_action_upscroll_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_arrow_upward"
+        android:background="@drawable/bg_main_floating_button"
+        android:elevation="1dp"
         android:layout_margin="40dp"
         android:contentDescription="floating button"
         app:layout_constraintBottom_toBottomOf="parent"
