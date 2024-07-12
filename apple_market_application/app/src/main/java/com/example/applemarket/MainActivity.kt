@@ -7,6 +7,8 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -16,6 +18,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.applemarket.adapter.GoodsAdapter
 import com.example.applemarket.databinding.ActivityMainBinding
 
@@ -61,8 +64,24 @@ class MainActivity : AppCompatActivity() {
         goodsRecyclerView.layoutManager = LinearLayoutManager(this)
         goodsRecyclerView.adapter = GoodsAdapter(this)
 
+        binding.mainRecyclerViewGoods.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (!recyclerView.canScrollVertically(-1)) {
+                    binding.mainFloatingActionUpscrollButton.animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.fade_out)
+                    binding.mainFloatingActionUpscrollButton.visibility = View.GONE
+                } else {
+                    binding.mainFloatingActionUpscrollButton.animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.fade_in)
+                    binding.mainFloatingActionUpscrollButton.visibility = View.VISIBLE
+                }
+            }
+        })
+
         binding.mainImageNotification.setOnClickListener {
             showNotification()
+        }
+
+        binding.mainFloatingActionUpscrollButton.setOnClickListener {
+            binding.mainRecyclerViewGoods.smoothScrollToPosition(0)
         }
     }
 
