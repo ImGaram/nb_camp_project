@@ -56,6 +56,7 @@
         android:layout_height="60dp"
         android:src="@drawable/ic_arrow_upward"
         android:background="@drawable/bg_main_floating_button"
+        app:tint="@drawable/col_main_floating_button_image"
         android:elevation="1dp"
         android:layout_margin="40dp"
         android:contentDescription="floating button"
