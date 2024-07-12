@@ -1,8 +1,8 @@
 package com.example.applemarket
 
+import android.icu.text.DecimalFormat
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +28,19 @@ class GoodsInfoActivity : AppCompatActivity() {
         }
 
         val goods = intent.getParcelableExtra("goods", GoodsData::class.java)
-        Log.d("TAG", "onCreate: $goods")
+
+        binding.goodsInfoBackImage.setOnClickListener { finish() }
+
+        if (goods != null) {
+            val decimalFormat = DecimalFormat("#,###원")
+            with(binding) {
+                goodsInfoImage.setImageResource(goods.goodsImage)
+                goodsInfoSellerName.text = goods.seller
+                goodsInfoSellerAddress.text = goods.address
+                goodsInfoGoodsTitle.text = goods.title
+                goodsInfoGoodsDescription.text = goods.description
+                goodsInfoGoodsPrice.text = decimalFormat.format(goods.price)
+            }
+        }
     }
 }
