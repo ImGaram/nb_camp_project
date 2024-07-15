@@ -43,10 +43,6 @@ class GoodsAdapter(private val context: Context): ListAdapter<GoodsData, GoodsAd
                 goodsChatCnt.text = goods.chatCnt.toString()
                 goodsLikeCnt.text = goods.likeCnt.toString()
 
-                goodsLikeStatusImage.setOnClickListener {
-                    // todo :: 좋아요 클릭 이벤트.
-                }
-
                 binding.root.setOnClickListener {
                     val intent = Intent(context, GoodsInfoActivity::class.java)
                     intent.putExtra("goods", goods)
