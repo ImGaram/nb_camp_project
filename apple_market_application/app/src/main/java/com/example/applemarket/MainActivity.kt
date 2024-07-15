@@ -62,16 +62,7 @@ class MainActivity : AppCompatActivity() {
         initNotificationPermission()
 
         val goodsRecyclerView = binding.mainRecyclerViewGoods
-        val adapter = GoodsAdapter(
-            onItemClick = { goods ->
-                val intent = Intent(this, GoodsInfoActivity::class.java)
-                intent.putExtra("goods", goods)
-                startActivity(intent)
-            },
-            onLongItemClick = { pos ->
-
-            }
-        )
+        val adapter = GoodsAdapter(this)
         adapter.submitList(GoodsObject.goodsList)
         goodsRecyclerView.layoutManager = LinearLayoutManager(this)
         goodsRecyclerView.adapter = adapter
@@ -112,10 +103,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         notificationManager.notify(11, builder.build())
-    }
-
-    private fun showDeleteDialog() {
-        // todo :: 삭제 dialog.
     }
 
     private fun initNotificationPermission() {
