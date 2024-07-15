@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applemarket.adapter.GoodsAdapter
+import com.example.applemarket.data.GoodsObject
 import com.example.applemarket.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -61,8 +62,19 @@ class MainActivity : AppCompatActivity() {
         initNotificationPermission()
 
         val goodsRecyclerView = binding.mainRecyclerViewGoods
+        val adapter = GoodsAdapter(
+            onItemClick = { goods ->
+                val intent = Intent(this, GoodsInfoActivity::class.java)
+                intent.putExtra("goods", goods)
+                startActivity(intent)
+            },
+            onLongItemClick = { pos ->
+
+            }
+        )
+        adapter.submitList(GoodsObject.goodsList)
         goodsRecyclerView.layoutManager = LinearLayoutManager(this)
-        goodsRecyclerView.adapter = GoodsAdapter(this)
+        goodsRecyclerView.adapter = adapter
 
         binding.mainRecyclerViewGoods.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -100,6 +112,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         notificationManager.notify(11, builder.build())
+    }
+
+    private fun showDeleteDialog() {
+        // todo :: 삭제 dialog.
     }
 
     private fun initNotificationPermission() {
