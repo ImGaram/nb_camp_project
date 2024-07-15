@@ -48,10 +48,13 @@
         android:id="@+id/game_layout_category_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="#03A9F4"
+        app:tabIndicatorColor="#03A9F4"
         app:layout_constraintTop_toBottomOf="@+id/game_layout_top_bar" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/game_layout_view_pager"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/game_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
