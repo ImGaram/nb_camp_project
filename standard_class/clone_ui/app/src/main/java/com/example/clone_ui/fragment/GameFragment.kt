@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.clone_ui.R
 import com.example.clone_ui.databinding.FragmentGameBinding
-import com.google.android.material.tabs.TabLayoutMediator
+import com.example.clone_ui.fragment.tab.PopularChartFragment
+import com.example.clone_ui.fragment.tab.RecommendFragment
+import com.example.clone_ui.fragment.tab.SoonFragment
+import com.google.android.material.tabs.TabLayout
 
 class GameFragment : Fragment() {
     private lateinit var binding: FragmentGameBinding
@@ -17,17 +20,43 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGameBinding.inflate(inflater)
-        TabLayoutMediator(binding.gameLayoutCategoryTab, binding.gameLayoutViewPager) { tab, pos ->
-            when (pos) {
-                0 -> tab.text = "추천"
-                1 -> tab.text = "인기 차트"
-                2 -> tab.text = "키즈"
-                3 -> tab.text = "신규"
-                4 -> tab.text = "프리미엄"
-                5 -> tab.text = "카테고리"
-            }
+
+        with(binding.gameLayoutCategoryTab) {
+            val tabTitle = listOf("추천", "인기 차트", "키즈", "신규", "프리미엄", "카테고리")
+            for (i in tabTitle.indices) addTab(newTab().setText(tabTitle[i]))
+
+            changeFragment(0)
+            addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    changeFragment(tab?.position)
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {}
+            })
         }
 
         return binding.root
+    }
+
+    private fun changeFragment(position: Int?) {
+        when (position) {
+            0 -> {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.game_fragment_container, RecommendFragment())
+                    .commit()
+            }
+            1 -> {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.game_fragment_container, PopularChartFragment())
+                    .commit()
+            }
+            else -> {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.game_fragment_container, SoonFragment())
+                    .commit()
+            }
+        }
     }
 }
