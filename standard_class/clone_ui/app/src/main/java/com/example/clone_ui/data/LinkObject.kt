@@ -1,4 +1,4 @@
-package com.example.clone_ui
+package com.example.clone_ui.data
 
 object LinkObject {
     val rankingLink = listOf(
