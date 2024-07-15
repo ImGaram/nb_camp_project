@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="게임"
+        android:id="@+id/menu_game"
+        android:icon="@drawable/ic_videogame"/>
+
+    <item
+        android:title="앱"
+        android:id="@+id/menu_apps"
+        android:icon="@drawable/ic_apps"/>
+
+    <item
+        android:title="검색"
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_search"/>
+
+    <item
+        android:title="도서"
+        android:id="@+id/menu_books"
+        android:icon="@drawable/ic_book"/>
+</menu>
