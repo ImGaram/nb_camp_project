@@ -1,27 +1,32 @@
 package com.example.applemarket.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.icu.text.DecimalFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.applemarket.GoodsInfoActivity
 import com.example.applemarket.R
 import com.example.applemarket.data.GoodsData
-import com.example.applemarket.data.GoodsObject
 import com.example.applemarket.databinding.ItemRecyclerViewGoodsBinding
 
-class GoodsAdapter(private val context: Context): RecyclerView.Adapter<GoodsAdapter.ViewHolder>() {
+class GoodsAdapter(
+    private val onItemClick: (GoodsData) -> Unit,
+    private val onLongItemClick: (Int) -> Unit
+): ListAdapter<GoodsData, GoodsAdapter.ViewHolder>(
+    object: DiffUtil.ItemCallback<GoodsData>() {
+        override fun areItemsTheSame(oldItem: GoodsData, newItem: GoodsData): Boolean = oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: GoodsData, newItem: GoodsData): Boolean = oldItem == newItem
+    }
+) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_view_goods, parent, false)
         return ViewHolder(ItemRecyclerViewGoodsBinding.bind(binding))
     }
 
-    override fun getItemCount(): Int = GoodsObject.goodsList.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val goods = GoodsObject.goodsList[position]
+        val goods = getItem(position)
         holder.bind(goods)
     }
 
@@ -42,11 +47,21 @@ class GoodsAdapter(private val context: Context): RecyclerView.Adapter<GoodsAdap
                 }
 
                 binding.root.setOnClickListener {
-                    val intent = Intent(context, GoodsInfoActivity::class.java)
-                    intent.putExtra("goods", goods)
-                    context.startActivity(intent)
+                    onItemClick(goods)
+                }
+
+                binding.root.setOnLongClickListener {
+                    val newList = currentList.toMutableList()
+                    newList.removeIf { it.id == goods.id }
+                    updateList(newList)
+
+                    return@setOnLongClickListener true
                 }
             }
         }
+    }
+
+    private fun updateList(newList: List<GoodsData>) {
+        submitList(newList)
     }
 }
