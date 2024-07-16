@@ -51,41 +51,10 @@
         app:tabMode="scrollable"
         app:tabSelectedTextColor="#03A9F4"
         app:tabIndicatorColor="#03A9F4"
-        app:layout_constraintTop_toBottomOf="@+id/game_layout_top_bar">
+        app:layout_constraintTop_toBottomOf="@+id/game_layout_top_bar" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="추천" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="인기 차트" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="키즈" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="신규" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="프리미엄" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="카테고리" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/game_fragment_container"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/game_view_pager2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
