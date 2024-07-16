@@ -14,7 +14,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.clone_ui.data.LinkObject
 
 class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,15 +66,15 @@ class SearchActivity : AppCompatActivity() {
         for (i in sponsor.indices) {
             val sponsorApp = findViewById<LinearLayout>(sponsor[i])
             sponsorApp.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(LinkObject.sponsorLink[i]))
-                startActivity(intent)
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(LinkObject.sponsorLink[i]))
+//                startActivity(intent)
             }
         }
         for (i in popular.indices) {
             val popularApp = findViewById<LinearLayout>(popular[i])
             popularApp.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(LinkObject.rankingLink[i]))
-                startActivity(intent)
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(LinkObject.rankingLink[i]))
+//                startActivity(intent)
             }
         }
     }
