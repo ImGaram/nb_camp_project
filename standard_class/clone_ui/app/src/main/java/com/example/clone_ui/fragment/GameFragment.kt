@@ -22,10 +22,10 @@ class GameFragment : Fragment() {
         binding = FragmentGameBinding.inflate(inflater)
 
         with(binding.gameLayoutCategoryTab) {
-            val tabTitle = listOf("추천", "인기 차트", "키즈", "신규", "프리미엄", "카테고리")
-            for (i in tabTitle.indices) addTab(newTab().setText(tabTitle[i]))
+            childFragmentManager.beginTransaction()
+                .add(R.id.game_fragment_container, RecommendFragment())
+                .commit()
 
-            changeFragment(0)
             addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     changeFragment(tab?.position)
@@ -43,17 +43,17 @@ class GameFragment : Fragment() {
     private fun changeFragment(position: Int?) {
         when (position) {
             0 -> {
-                parentFragmentManager.beginTransaction()
+                childFragmentManager.beginTransaction()
                     .replace(R.id.game_fragment_container, RecommendFragment())
                     .commit()
             }
             1 -> {
-                parentFragmentManager.beginTransaction()
+                childFragmentManager.beginTransaction()
                     .replace(R.id.game_fragment_container, PopularChartFragment())
                     .commit()
             }
             else -> {
-                parentFragmentManager.beginTransaction()
+                childFragmentManager.beginTransaction()
                     .replace(R.id.game_fragment_container, SoonFragment())
                     .commit()
             }
