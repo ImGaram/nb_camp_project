@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="12dp">
 
     <ImageView
-        android:id="@+id/event_item_title_image"
+        android:id="@+id/event_item_banner_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:background="@drawable/bg_image_radius"
+        android:clipToOutline="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,11 +22,12 @@
         android:id="@+id/event_item_app_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="12dp"
         android:background="@drawable/bg_image_radius"
+        android:clipToOutline="true"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/event_item_title_image"
-        app:layout_constraintTop_toBottomOf="@+id/event_item_title_image" />
+        app:layout_constraintStart_toStartOf="@+id/event_item_banner_image"
+        app:layout_constraintTop_toBottomOf="@+id/event_item_banner_image" />
 
     <TextView
         android:id="@+id/event_item_app_title"
