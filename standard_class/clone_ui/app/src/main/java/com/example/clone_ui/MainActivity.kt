@@ -5,7 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.clone_ui.data.PopularRankObject
+import com.example.clone_ui.data.`object`.PopularRankObject
 import com.example.clone_ui.databinding.ActivityMainBinding
 import com.example.clone_ui.fragment.AppsFragment
 import com.example.clone_ui.fragment.BookFragment

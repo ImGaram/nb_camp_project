@@ -1,6 +1,7 @@
-package com.example.clone_ui.data
+package com.example.clone_ui.data.`object`
 
 import com.example.clone_ui.R
+import com.example.clone_ui.data.PopularAppData
 
 object PopularRankObject {
     private val popularRank = mutableListOf<PopularAppData>()
