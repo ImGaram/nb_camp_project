@@ -53,11 +53,13 @@
         app:tabIndicatorColor="#03A9F4"
         app:layout_constraintTop_toBottomOf="@+id/game_layout_top_bar" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/game_view_pager2"
-        android:layout_width="match_parent"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/game_fragment_container_view"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_layout_category_tab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
