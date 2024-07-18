@@ -25,10 +25,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="12dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
                 android:src="@drawable/ic_search" />
 
             <TextView
@@ -40,12 +40,11 @@
                 android:layout_gravity="center"/>
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/ic_mic"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="12dp" />
+                android:layout_marginHorizontal="20dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
