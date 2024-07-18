@@ -1,9 +1,9 @@
 package com.example.clone_ui.data.`object`
 
 import com.example.clone_ui.R
-import com.example.clone_ui.data.PremiumAppData
+import com.example.clone_ui.data.recommend.PremiumAppData
 import com.example.clone_ui.data.RecommendData
-import com.example.clone_ui.data.SponsorAppData
+import com.example.clone_ui.data.recommend.SponsorAppData
 
 object RecommendObject {
     private val recommendList = mutableListOf<RecommendData>()

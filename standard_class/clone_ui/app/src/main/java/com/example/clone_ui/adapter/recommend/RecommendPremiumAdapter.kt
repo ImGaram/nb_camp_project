@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clone_ui.R
-import com.example.clone_ui.data.PremiumAppData
+import com.example.clone_ui.data.recommend.PremiumAppData
 import com.example.clone_ui.databinding.ItemRecommendPremiumAppBinding
 
 class RecommendPremiumAdapter(private val context: Context): ListAdapter<PremiumAppData, RecommendPremiumAdapter.ViewHolder>(

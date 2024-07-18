@@ -1,6 +1,8 @@
 package com.example.clone_ui.data
 
 import android.os.Parcelable
+import com.example.clone_ui.data.recommend.PremiumAppData
+import com.example.clone_ui.data.recommend.SponsorAppData
 import kotlinx.parcelize.Parcelize
 
 sealed class RecommendData: Parcelable {

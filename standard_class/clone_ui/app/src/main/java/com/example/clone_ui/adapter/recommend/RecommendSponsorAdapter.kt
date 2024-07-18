@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clone_ui.R
-import com.example.clone_ui.data.SponsorAppData
+import com.example.clone_ui.data.recommend.SponsorAppData
 import com.example.clone_ui.databinding.ItemRecommendSponsorAppBinding
 
 class RecommendSponsorAdapter(private val context: Context): ListAdapter<SponsorAppData, RecommendSponsorAdapter.ViewHolder>(
