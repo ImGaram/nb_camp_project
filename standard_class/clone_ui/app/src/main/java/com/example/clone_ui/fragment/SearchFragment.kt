@@ -23,8 +23,19 @@ class SearchFragment : Fragment() {
 
         val recyclerView = binding.searchRecyclerView
         val adapter = SearchAdapter(
-            requireContext()
-            // todo :: 요기에 클릭 리스너 넣고 안에 replace 넣으면 될듯. bundle도 같이.
+            requireContext(),
+            onCategoryCardClick = {
+                val bundle = Bundle()
+                bundle.putString("category", it)
+
+                val searchingFragment = SearchingFragment()
+                searchingFragment.arguments = bundle
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, searchingFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
         )
 
         adapter.submitList(SearchObject.getSearchList())
