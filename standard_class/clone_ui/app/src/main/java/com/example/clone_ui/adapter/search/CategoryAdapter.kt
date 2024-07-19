@@ -9,7 +9,7 @@ import com.example.clone_ui.R
 import com.example.clone_ui.data.search.CategoryData
 import com.example.clone_ui.databinding.ItemSearchAppCategoriesBinding
 
-class CategoryAdapter: ListAdapter<CategoryData, CategoryAdapter.ViewHolder>(
+class CategoryAdapter(private val onItemClick: (String) -> Unit): ListAdapter<CategoryData, CategoryAdapter.ViewHolder>(
     object: DiffUtil.ItemCallback<CategoryData>() {
         override fun areItemsTheSame(oldItem: CategoryData, newItem: CategoryData): Boolean = oldItem.id == newItem.id
 
@@ -28,6 +28,7 @@ class CategoryAdapter: ListAdapter<CategoryData, CategoryAdapter.ViewHolder>(
     inner class ViewHolder(private val binding: ItemSearchAppCategoriesBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(category: CategoryData) {
             binding.itemSearchCategoryName.text = category.category
+            binding.root.setOnClickListener { onItemClick(category.category) }
         }
     }
 }

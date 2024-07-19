@@ -18,7 +18,7 @@ import com.example.clone_ui.databinding.ItemSearchAppsListBinding
 import com.example.clone_ui.databinding.ItemSearchHeaderBinding
 import com.example.clone_ui.databinding.ItemSearchSponsorAppBinding
 
-class SearchAdapter(private val context: Context): ListAdapter<SearchData, RecyclerView.ViewHolder>(
+class SearchAdapter(private val context: Context, private val onCategoryCardClick: (String) -> Unit): ListAdapter<SearchData, RecyclerView.ViewHolder>(
     object: DiffUtil.ItemCallback<SearchData>() {
         override fun areItemsTheSame(oldItem: SearchData, newItem: SearchData): Boolean = oldItem == newItem
 
@@ -89,7 +89,7 @@ class SearchAdapter(private val context: Context): ListAdapter<SearchData, Recyc
     inner class SearchGameCategoryListViewHolder(private val binding: ItemSearchAppsListBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(data: SearchData.GameCategoryData) {
             val recyclerView = binding.itemSearchAppListRecyclerView
-            val adapter = CategoryAdapter()
+            val adapter = CategoryAdapter { onCategoryCardClick("$it 게임") }
 
             adapter.submitList(data.list)
             recyclerView.adapter = adapter
@@ -101,7 +101,7 @@ class SearchAdapter(private val context: Context): ListAdapter<SearchData, Recyc
     inner class SearchAppsCategoryListViewHolder(private val binding: ItemSearchAppsListBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(data: SearchData.AppCategoryData) {
             val recyclerView = binding.itemSearchAppListRecyclerView
-            val adapter = CategoryAdapter()
+            val adapter = CategoryAdapter(onCategoryCardClick)
 
             adapter.submitList(data.list)
             recyclerView.adapter = adapter
