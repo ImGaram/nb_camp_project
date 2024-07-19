@@ -13,6 +13,8 @@
         android:layout_marginHorizontal="24dp"
         android:layout_weight="1"
         android:layout_marginTop="12dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
         app:cardBackgroundColor="#F1F1F1"
         app:cardCornerRadius="1000dp"
         app:cardElevation="0dp"
