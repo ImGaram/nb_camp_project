@@ -1,7 +1,9 @@
 package com.example.clone_ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Rect
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -116,6 +118,11 @@ class SearchAdapter(private val context: Context): ListAdapter<SearchData, Recyc
                 itemSearchSponsorCategory.text = data.category
                 itemSearchSponsorStarRate.text = "${data.starRating}★"
                 itemSearchSponsorDownloadCnt.text = data.downLoads
+
+                root.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data.link))
+                    context.startActivity(intent)
+                }
             }
         }
     }
