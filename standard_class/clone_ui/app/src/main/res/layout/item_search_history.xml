@@ -6,22 +6,26 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:src="@drawable/ic_history"
-        android:padding="2dp"
+        android:padding="4dp"
         android:background="@drawable/bg_history_image" />
 
     <TextView
+        android:id="@+id/item_history_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:layout_weight="1"
+        android:layout_marginHorizontal="12dp"
         android:layout_gravity="center"/>
 
     <ImageView
         android:id="@+id/item_history_paste_image"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/ic_left_up_arrow" />
+        android:src="@drawable/ic_left_up_arrow"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackgroundBorderless" />
 </LinearLayout>
