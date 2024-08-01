@@ -13,13 +13,19 @@ class SearchViewModel(private val repository: KakaoSearchRepository = KakaoSearc
     private val _searchResult = MutableStateFlow<List<ResultDocument>>(emptyList())
     val searchResult: StateFlow<List<ResultDocument>> = _searchResult.asStateFlow()
 
+    private val _isLoading = MutableStateFlow<Boolean?>(null)
+    val isLoading: StateFlow<Boolean?> = _isLoading.asStateFlow()
+
     fun getSearchList(query: String) {
         viewModelScope.launch {
+            _isLoading.value = false
             val searchImages = repository.getSearchImages(query)
             val searchVideos = repository.getSearchVideos(query)
 
             val result = repository.combinationResult(searchImages, searchVideos)
-            _searchResult.value = result
+            _searchResult.value = result.sortedByDescending { it.datetime }
+
+            if (result.isNotEmpty()) _isLoading.value = true
         }
     }
 }
