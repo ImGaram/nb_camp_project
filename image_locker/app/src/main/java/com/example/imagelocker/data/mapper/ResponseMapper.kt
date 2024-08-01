@@ -22,7 +22,7 @@ object ResponseMapper {
 
     private fun imageDocumentToResult(imageDocument: ImageDocument): ResultDocument {
         return ResultDocument(
-            title = imageDocument.displaySiteName,
+            title = "[Image] ${imageDocument.displaySiteName}",
             imageUrl = imageDocument.thumbnailUrl,
             datetime = imageDocument.datetime
         )
@@ -30,7 +30,7 @@ object ResponseMapper {
 
     private fun videoDocumentToResult(videoDocument: VideoDocument): ResultDocument {
         return ResultDocument(
-            title = videoDocument.title,
+            title = "[Video] ${videoDocument.title}",
             imageUrl = videoDocument.thumbnail,
             datetime = videoDocument.datetime
         )
