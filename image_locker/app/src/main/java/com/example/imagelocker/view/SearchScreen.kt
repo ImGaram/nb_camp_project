@@ -1,5 +1,6 @@
 package com.example.imagelocker.view
 
+import android.content.Context.MODE_PRIVATE
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -52,16 +53,21 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.imagelocker.R
 import com.example.imagelocker.view.component.SearchInfiniteLazyGrid
+import com.example.imagelocker.viewmodel.LockerViewModel
 import com.example.imagelocker.viewmodel.SearchViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
-fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
+fun SearchScreen(
+    searchViewModel: SearchViewModel = viewModel(),
+    lockerViewModel: LockerViewModel = viewModel()
+) {
     val context = LocalContext.current
     val searchList = searchViewModel.searchResult.collectAsState()
     val isLoading = searchViewModel.isLoading.collectAsState()
     val pageState = remember { mutableIntStateOf(1) }
+    val sp = context.getSharedPreferences("locker_list", MODE_PRIVATE)
 
     Box(modifier = Modifier.fillMaxSize()) {
         val gridState = rememberLazyStaggeredGridState()
@@ -149,6 +155,10 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
                 loadMore = {
                     pageState.intValue++
                     searchViewModel.getNextPageSearchList(searchKeywordState.text.toString(), pageState.intValue)
+                },
+                saveLocker = {
+                    lockerViewModel.addData(it, sp)
+                    Toast.makeText(context, "저장소에 저장되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             )
         }
