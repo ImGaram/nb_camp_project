@@ -12,13 +12,15 @@ interface KakaoApi {
     suspend fun getSearchImages(
         @Header("Authorization") authorization: String = "KakaoAK ${BuildConfig.KAKAO_API_KEY}",
         @Query("query") query: String,
-        @Query("sort") sort: String = "recency"
+        @Query("sort") sort: String = "recency",
+        @Query("page") page: Int
     ): SearchImageResponse
 
     @GET("v2/search/vclip")
     suspend fun getSearchVideos(
         @Header("Authorization") authorization: String = "KakaoAK ${BuildConfig.KAKAO_API_KEY}",
         @Query("query") query: String,
-        @Query("sort") sort: String = "recency"
+        @Query("sort") sort: String = "recency",
+        @Query("page") page: Int
     ): SearchVideoResponse
 }

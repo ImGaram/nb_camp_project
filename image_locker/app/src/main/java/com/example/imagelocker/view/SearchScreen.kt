@@ -75,7 +75,7 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
                     onSearch = {
                         val searchQuery = searchKeywordState.text.toString()
                         if (searchQuery.isNotEmpty()) {
-                            searchViewModel.getSearchList(searchQuery)
+                            searchViewModel.getSearchList(searchQuery, 1)
                         } else Toast.makeText(context, "검색어가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
 
                         keyBoardController?.hide()
@@ -109,7 +109,7 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
                             modifier = Modifier.clickable {
                                 val searchQuery = searchKeywordState.text.toString()
                                 if (searchQuery.isNotEmpty()) {
-                                    searchViewModel.getSearchList(searchQuery)
+                                    searchViewModel.getSearchList(searchQuery, 1)
                                 } else Toast.makeText(context, "검색어가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
 
                                 focusManager.clearFocus()

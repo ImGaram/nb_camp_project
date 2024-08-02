@@ -11,12 +11,12 @@ class KakaoSearchRepository {
         val kakoApi = KakaoApiClient.kakaoApi
     }
 
-    suspend fun getSearchImages(query: String): SearchImageResponse {
-        return kakoApi.getSearchImages(query = query)
+    suspend fun getSearchImages(query: String, page: Int): SearchImageResponse {
+        return kakoApi.getSearchImages(query = query, page = page)
     }
 
-    suspend fun getSearchVideos(query: String): SearchVideoResponse {
-        return kakoApi.getSearchVideos(query = query)
+    suspend fun getSearchVideos(query: String, page: Int): SearchVideoResponse {
+        return kakoApi.getSearchVideos(query = query, page = page)
     }
 
     fun combinationResult(images: SearchImageResponse, videos: SearchVideoResponse): List<ResultDocument> {
