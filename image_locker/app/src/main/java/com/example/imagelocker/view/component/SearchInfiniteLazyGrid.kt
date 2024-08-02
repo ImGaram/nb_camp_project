@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
@@ -25,18 +26,18 @@ fun SearchInfiniteLazyGrid(
     item: List<ResultDocument>,
     columns: StaggeredGridCells,
     modifier: Modifier = Modifier,
+    state: LazyStaggeredGridState,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     verticalItemSpacing: Dp = 0.dp,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(0.dp),
     loading: Boolean?,
     loadMore: () -> Unit = {}
 ) {
-    val gridState = rememberLazyStaggeredGridState()
     // 최하단에 도달했을 때의 state
     val reachedBottom: Boolean by remember {
         derivedStateOf {
-            val lastVisibleItem = gridState.layoutInfo.visibleItemsInfo.lastOrNull()
-            lastVisibleItem?.index != 0 && lastVisibleItem?.index == gridState.layoutInfo.totalItemsCount - 1
+            val lastVisibleItem = state.layoutInfo.visibleItemsInfo.lastOrNull()
+            lastVisibleItem?.index != 0 && lastVisibleItem?.index == state.layoutInfo.totalItemsCount - 1
         }
     }
 
@@ -51,7 +52,7 @@ fun SearchInfiniteLazyGrid(
             LazyVerticalStaggeredGrid(
                 columns = columns,
                 modifier = modifier,
-                state = gridState,
+                state = state,
                 contentPadding = contentPadding,
                 verticalItemSpacing = verticalItemSpacing,
                 horizontalArrangement = horizontalArrangement
