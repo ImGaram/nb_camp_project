@@ -1,5 +1,6 @@
 package com.example.imagelocker.view.item
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
@@ -15,8 +16,17 @@ import coil.request.ImageRequest
 import com.example.imagelocker.data.response.ResultDocument
 
 @Composable
-fun SearchResultItem(item: ResultDocument) {
-    Column {
+fun SearchResultItem(
+    item: ResultDocument,
+    saveLocker: () -> Unit = {},
+    removeLocker: () -> Unit = {}
+) {
+    Column(
+        modifier = Modifier.clickable {
+            saveLocker()
+            removeLocker()
+        }
+    ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(item.imageUrl)
