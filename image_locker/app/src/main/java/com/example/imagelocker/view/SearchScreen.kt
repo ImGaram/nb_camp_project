@@ -15,9 +15,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -27,6 +25,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -40,8 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.imagelocker.R
-import com.example.imagelocker.view.component.LoadingIndicator
-import com.example.imagelocker.view.item.SearchResultItem
+import com.example.imagelocker.view.component.SearchInfiniteLazyGrid
 import com.example.imagelocker.viewmodel.SearchViewModel
 
 @Composable
@@ -50,12 +50,15 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
     val context = LocalContext.current
     val searchList = searchViewModel.searchResult.collectAsState()
     val isLoading = searchViewModel.isLoading.collectAsState()
+    val pageState = remember { mutableIntStateOf(1) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
+        val searchKeywordState = rememberTextFieldState()
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -63,7 +66,6 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
                 .background(Color.White)
                 .padding(8.dp)
         ) {
-            val searchKeywordState = rememberTextFieldState()
             val keyBoardController = LocalSoftwareKeyboardController.current
             val focusManager = LocalFocusManager.current
 
@@ -120,24 +122,21 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
             )
         }
 
-        if (isLoading.value == true) {
-            LazyVerticalStaggeredGrid(
-                columns = StaggeredGridCells.Fixed(2),
-                contentPadding = PaddingValues(8.dp),
-                verticalItemSpacing = 8.dp,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(searchList.value) {
-                    SearchResultItem(item = it)
-                }
+        SearchInfiniteLazyGrid(
+            item = searchList.value,
+            columns = StaggeredGridCells.Fixed(2),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            contentPadding = PaddingValues(8.dp),
+            verticalItemSpacing = 8.dp,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            loading = isLoading.value,
+            loadMore = {
+                pageState.intValue++
+                searchViewModel.getNextPageSearchList(searchKeywordState.text.toString(), pageState.intValue)
             }
-        } else if (isLoading.value == false) {
-            LoadingIndicator(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.White)
-            )
-        }
+        )
     }
 }
 
