@@ -1,4 +1,4 @@
-package com.example.imagelocker.view
+package com.example.imagelocker.view.screen
 
 import android.content.Context.MODE_PRIVATE
 import android.widget.Toast

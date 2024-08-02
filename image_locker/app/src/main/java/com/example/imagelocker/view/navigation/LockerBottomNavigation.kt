@@ -1,4 +1,4 @@
-package com.example.imagelocker.navigation
+package com.example.imagelocker.view.navigation
 
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults

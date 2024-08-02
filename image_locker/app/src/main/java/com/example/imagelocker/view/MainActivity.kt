@@ -1,4 +1,4 @@
-package com.example.imagelocker
+package com.example.imagelocker.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,9 +10,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
-import com.example.imagelocker.navigation.BottomNavHost
-import com.example.imagelocker.navigation.LockerBottomNavigation
-import com.example.imagelocker.navigation.searchRoute
+import com.example.imagelocker.view.navigation.BottomNavHost
+import com.example.imagelocker.view.navigation.LockerBottomNavigation
+import com.example.imagelocker.view.navigation.searchRoute
 import com.example.imagelocker.ui.theme.ImageLockerTheme
 
 class MainActivity : ComponentActivity() {
