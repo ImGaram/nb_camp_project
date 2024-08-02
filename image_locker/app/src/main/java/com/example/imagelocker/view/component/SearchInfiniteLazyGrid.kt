@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
-import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -31,7 +30,8 @@ fun SearchInfiniteLazyGrid(
     verticalItemSpacing: Dp = 0.dp,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(0.dp),
     loading: Boolean?,
-    loadMore: () -> Unit = {}
+    loadMore: () -> Unit = {},
+    saveLocker: (ResultDocument) -> Unit = {}
 ) {
     // 최하단에 도달했을 때의 state
     val reachedBottom: Boolean by remember {
@@ -58,7 +58,10 @@ fun SearchInfiniteLazyGrid(
                 horizontalArrangement = horizontalArrangement
             ) {
                 items(item) {
-                    SearchResultItem(item = it)
+                    SearchResultItem(
+                        item = it,
+                        saveLocker = { saveLocker(it) }
+                    )
                 }
             }
         }
