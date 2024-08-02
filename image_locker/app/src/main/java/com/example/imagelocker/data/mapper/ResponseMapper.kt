@@ -6,6 +6,7 @@ import com.example.imagelocker.data.response.SearchVideoResponse
 import com.example.imagelocker.data.response.VideoDocument
 import com.example.imagelocker.data.response.ResultDocument
 import com.example.imagelocker.data.response.ResultResponse
+import java.util.UUID
 
 object ResponseMapper {
     fun searchImageToResult(searchImageResponse: SearchImageResponse): ResultResponse {
@@ -22,6 +23,7 @@ object ResponseMapper {
 
     private fun imageDocumentToResult(imageDocument: ImageDocument): ResultDocument {
         return ResultDocument(
+            id = UUID.randomUUID().toString(),
             title = "[Image] ${imageDocument.displaySiteName}",
             imageUrl = imageDocument.thumbnailUrl,
             datetime = imageDocument.datetime
@@ -30,6 +32,7 @@ object ResponseMapper {
 
     private fun videoDocumentToResult(videoDocument: VideoDocument): ResultDocument {
         return ResultDocument(
+            id = UUID.randomUUID().toString(),
             title = "[Video] ${videoDocument.title}",
             imageUrl = videoDocument.thumbnail,
             datetime = videoDocument.datetime
