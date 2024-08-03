@@ -9,17 +9,27 @@ import android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clone_ui.R
-import com.example.clone_ui.view.adapter.SearchingAdapter
 import com.example.clone_ui.data.SearchHistoryData
-import com.example.clone_ui.data.`object`.SearchHistoryObject
 import com.example.clone_ui.databinding.FragmentSearchingBinding
+import com.example.clone_ui.view.adapter.SearchingAdapter
 import com.example.clone_ui.view.fragment.SearchFragment
+import com.example.clone_ui.viewmodel.SearchViewModel
 
 class SearchingFragment : Fragment() {
     private lateinit var binding: FragmentSearchingBinding
     private lateinit var adapter: SearchingAdapter
+    private val searchViewModel: SearchViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if (searchViewModel.searchHistory.value.isNullOrEmpty()) {
+            searchViewModel.getSearchHistory()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +44,13 @@ class SearchingFragment : Fragment() {
         editText.setKeyboard()
 
         adapter = SearchingAdapter { editText.setText(it) }
-        adapter.submitList(SearchHistoryObject.getHistory())
-
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
+
+        searchViewModel.searchHistory.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) adapter.submitList(it)
+        }
+
 
         binding.searchingBackImage.setOnClickListener {
             parentFragmentManager.beginTransaction()
