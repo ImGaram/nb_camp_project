@@ -1,4 +1,4 @@
-package com.example.clone_ui.fragment.search
+package com.example.clone_ui.view.fragment.search
 
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
@@ -11,11 +11,11 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clone_ui.R
-import com.example.clone_ui.adapter.SearchingAdapter
+import com.example.clone_ui.view.adapter.SearchingAdapter
 import com.example.clone_ui.data.SearchingData
 import com.example.clone_ui.data.`object`.SearchingHistoryObject
 import com.example.clone_ui.databinding.FragmentSearchingBinding
-import com.example.clone_ui.fragment.SearchFragment
+import com.example.clone_ui.view.fragment.SearchFragment
 
 class SearchingFragment : Fragment() {
     private lateinit var binding: FragmentSearchingBinding

@@ -1,4 +1,4 @@
-package com.example.clone_ui.adapter
+package com.example.clone_ui.view.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clone_ui.R
-import com.example.clone_ui.adapter.recommend.RecommendPremiumAdapter
-import com.example.clone_ui.adapter.recommend.RecommendSponsorAdapter
+import com.example.clone_ui.view.adapter.recommend.RecommendPremiumAdapter
+import com.example.clone_ui.view.adapter.recommend.RecommendSponsorAdapter
 import com.example.clone_ui.data.RecommendData
 import com.example.clone_ui.databinding.ItemRecommendAppsListBinding
 import com.example.clone_ui.databinding.ItemRecommendEventAppBinding

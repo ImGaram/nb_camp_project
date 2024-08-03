@@ -1,4 +1,4 @@
-package com.example.clone_ui.adapter.search
+package com.example.clone_ui.view.adapter.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

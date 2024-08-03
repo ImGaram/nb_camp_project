@@ -1,4 +1,4 @@
-package com.example.clone_ui.fragment.tab
+package com.example.clone_ui.view.fragment.tab
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

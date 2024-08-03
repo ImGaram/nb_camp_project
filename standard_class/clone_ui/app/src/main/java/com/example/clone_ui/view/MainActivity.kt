@@ -1,16 +1,17 @@
-package com.example.clone_ui
+package com.example.clone_ui.view
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.clone_ui.R
 import com.example.clone_ui.data.`object`.PopularRankObject
 import com.example.clone_ui.databinding.ActivityMainBinding
-import com.example.clone_ui.fragment.AppsFragment
-import com.example.clone_ui.fragment.BookFragment
-import com.example.clone_ui.fragment.GameFragment
-import com.example.clone_ui.fragment.SearchFragment
+import com.example.clone_ui.view.fragment.AppsFragment
+import com.example.clone_ui.view.fragment.BookFragment
+import com.example.clone_ui.view.fragment.GameFragment
+import com.example.clone_ui.view.fragment.SearchFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

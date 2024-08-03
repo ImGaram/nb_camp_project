@@ -1,4 +1,4 @@
-package com.example.clone_ui.fragment
+package com.example.clone_ui.view.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.clone_ui.R
 import com.example.clone_ui.databinding.FragmentGameBinding
-import com.example.clone_ui.fragment.tab.PopularChartFragment
-import com.example.clone_ui.fragment.tab.RecommendFragment
-import com.example.clone_ui.fragment.tab.SoonFragment
+import com.example.clone_ui.view.fragment.tab.PopularChartFragment
+import com.example.clone_ui.view.fragment.tab.RecommendFragment
+import com.example.clone_ui.view.fragment.tab.SoonFragment
 import com.google.android.material.tabs.TabLayout
 
 class GameFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.example.clone_ui.adapter
+package com.example.clone_ui.view.adapter
 
 import android.content.Context
 import android.content.Intent

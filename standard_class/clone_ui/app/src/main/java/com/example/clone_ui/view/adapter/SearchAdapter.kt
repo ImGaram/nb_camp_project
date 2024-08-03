@@ -1,4 +1,4 @@
-package com.example.clone_ui.adapter
+package com.example.clone_ui.view.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clone_ui.R
-import com.example.clone_ui.adapter.search.CategoryAdapter
+import com.example.clone_ui.view.adapter.search.CategoryAdapter
 import com.example.clone_ui.data.SearchData
 import com.example.clone_ui.databinding.ItemSearchAppsListBinding
 import com.example.clone_ui.databinding.ItemSearchHeaderBinding

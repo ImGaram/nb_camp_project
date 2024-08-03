@@ -1,4 +1,4 @@
-package com.example.clone_ui.fragment
+package com.example.clone_ui.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clone_ui.R
-import com.example.clone_ui.adapter.SearchAdapter
+import com.example.clone_ui.view.adapter.SearchAdapter
 import com.example.clone_ui.data.`object`.SearchObject
 import com.example.clone_ui.databinding.FragmentSearchBinding
-import com.example.clone_ui.fragment.search.SearchingFragment
+import com.example.clone_ui.view.fragment.search.SearchingFragment
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding

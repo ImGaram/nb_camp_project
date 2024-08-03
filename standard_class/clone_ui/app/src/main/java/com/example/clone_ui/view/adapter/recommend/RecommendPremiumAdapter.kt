@@ -1,4 +1,4 @@
-package com.example.clone_ui.adapter.recommend
+package com.example.clone_ui.view.adapter.recommend
 
 import android.content.Context
 import android.content.Intent

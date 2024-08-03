@@ -1,4 +1,4 @@
-package com.example.clone_ui.fragment.tab
+package com.example.clone_ui.view.fragment.tab
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.clone_ui.adapter.PopularChartAdapter
+import com.example.clone_ui.view.adapter.PopularChartAdapter
 import com.example.clone_ui.data.`object`.PopularRankObject
 import com.example.clone_ui.databinding.FragmentPopularChartBinding
 
