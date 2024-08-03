@@ -1,10 +1,10 @@
 package com.example.clone_ui.data.`object`
 
 import com.example.clone_ui.R
-import com.example.clone_ui.data.PopularAppData
+import com.example.clone_ui.data.PopularChartData
 
-object PopularRankObject {
-    private val popularRank = mutableListOf<PopularAppData>()
+object PopularChartObject {
+    private val popularChart = mutableListOf<PopularChartData>()
     private val ids = (1..20).toList()
     private val appIcons = listOf(
         R.drawable.ic_game_1st, R.drawable.ic_game_2nd, R.drawable.ic_game_3rd, R.drawable.ic_game_4th, R.drawable.ic_game_5th,
@@ -39,12 +39,10 @@ object PopularRankObject {
         "https://play.google.com/store/apps/details?id=com.noriworks.kg", "https://play.google.com/store/apps/details?id=jp.co.ponos.battlecatskr"
     )
 
-    fun getPopularRank(): MutableList<PopularAppData> = popularRank
-
-    fun initPopularRank() {
+    init {
         for (i in 0 until 20) {
-            popularRank.add(
-                PopularAppData(
+            popularChart.add(
+                PopularChartData(
                     id = ids[i],
                     rank = ids[i],
                     appIcon = appIcons[i],
@@ -57,4 +55,6 @@ object PopularRankObject {
             )
         }
     }
+
+    fun getPopularRank(): MutableList<PopularChartData> = popularChart
 }

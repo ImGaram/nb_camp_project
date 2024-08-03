@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PopularAppData(
+data class PopularChartData(
     val id: Int,
     val rank: Int,
     val appIcon: Int = 0,
