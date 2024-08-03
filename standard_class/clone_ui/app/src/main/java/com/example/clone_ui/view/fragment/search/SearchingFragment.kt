@@ -71,7 +71,7 @@ class SearchingFragment : Fragment() {
 
         setOnEditorActionListener { _, actionId, _ ->
             if (actionId == IME_ACTION_SEARCH) {
-                refreshRecycler(text.toString())
+                if (text.toString().isNotEmpty()) refreshRecycler(text.toString())
 
                 // 키보드 닫기.
                 val inputMethodManager = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
