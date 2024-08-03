@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.clone_ui.R
-import com.example.clone_ui.data.`object`.PopularRankObject
 import com.example.clone_ui.databinding.ActivityMainBinding
 import com.example.clone_ui.view.fragment.AppsFragment
 import com.example.clone_ui.view.fragment.BookFragment
@@ -27,7 +26,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        if (PopularRankObject.getPopularRank().isEmpty()) PopularRankObject.initPopularRank()
 
         changeFragment(R.id.menu_game)
         binding.mainLayoutBottomNavigation.setOnItemSelectedListener { menu ->
