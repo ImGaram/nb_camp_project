@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clone_ui.R
 import com.example.clone_ui.view.adapter.SearchingAdapter
-import com.example.clone_ui.data.SearchingData
-import com.example.clone_ui.data.`object`.SearchingHistoryObject
+import com.example.clone_ui.data.SearchHistoryData
+import com.example.clone_ui.data.`object`.SearchHistoryObject
 import com.example.clone_ui.databinding.FragmentSearchingBinding
 import com.example.clone_ui.view.fragment.SearchFragment
 
@@ -34,7 +34,7 @@ class SearchingFragment : Fragment() {
         editText.setKeyboard()
 
         adapter = SearchingAdapter { editText.setText(it) }
-        adapter.submitList(SearchingHistoryObject.getHistory())
+        adapter.submitList(SearchHistoryObject.getHistory())
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -72,7 +72,7 @@ class SearchingFragment : Fragment() {
     private fun refreshRecycler(search: String) {
         val historyList = adapter.currentList.toMutableList()
         historyList.add(
-            SearchingData(
+            SearchHistoryData(
                 id = historyList.size + 1,
                 searchText = search
             )

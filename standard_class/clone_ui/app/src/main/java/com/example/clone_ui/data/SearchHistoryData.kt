@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SearchingData(
+data class SearchHistoryData(
     val id: Int,
     val searchText: String = ""
 ): Parcelable

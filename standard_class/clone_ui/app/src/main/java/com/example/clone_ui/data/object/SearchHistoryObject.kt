@@ -1,14 +1,14 @@
 package com.example.clone_ui.data.`object`
 
-import com.example.clone_ui.data.SearchingData
+import com.example.clone_ui.data.SearchHistoryData
 
-object SearchingHistoryObject {
+object SearchHistoryObject {
     private val history = mutableListOf(
-        SearchingData(
+        SearchHistoryData(
             id = 1,
             searchText = "테스트 검색"
         )
     )
 
-    fun getHistory(): List<SearchingData> = history
+    fun getHistory(): List<SearchHistoryData> = history
 }
